@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bind.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpaunovi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/05 16:15:37 by dpaunovi          #+#    #+#             */
+/*   Updated: 2017/06/05 16:15:46 by dpaunovi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fractol.h"
-
-#include <stdio.h>
 
 int		mouse(int button, int x, int y, void *param)
 {
@@ -28,7 +38,6 @@ int		key(int keycode, void *param)
 {
 	t_fract		*fract;
 
-	printf("keycode : %d\n", keycode);
 	fract = param;
 	if (keycode == 37)
 		fract->lock = fract->lock ? 0 : 1;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpaunovi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/05 16:16:32 by dpaunovi          #+#    #+#             */
+/*   Updated: 2017/06/05 16:20:02 by dpaunovi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 #include <mlx.h>
@@ -5,11 +17,11 @@
 
 static int	iter(t_fract *fract, long double x, long double y)
 {
-	long double	zr;
-	long double	zi;
-	long double	zrsq;
-	long double	zisq;
-	int		i;
+	long double		zr;
+	long double		zi;
+	long double		zrsq;
+	long double		zisq;
+	int				i;
 
 	i = 0;
 	zr = 0;
@@ -27,28 +39,28 @@ static int	iter(t_fract *fract, long double x, long double y)
 	return (i);
 }
 
-static int		color(long double i)
+static int	color(long double i)
 {
 	if (i <= 0.16)
 		return (((int)(32 * i / 0.16) << 16) + ((int)(7 + 100 * i /
-			0.16) << 8) + (100 + 103 * i / 0.16));
+						0.16) << 8) + (100 + 103 * i / 0.16));
 	else if (i <= 0.42 && (i -= 0.16))
 		return (((int)(32 + 205 * i / 0.26) << 16) + ((int)(107 + 148 * i /
-			0.26) << 8) + (203 + 42 * i / 0.26));
+						0.26) << 8) + (203 + 42 * i / 0.26));
 	else if (i <= 0.6425 && (i -= 0.42))
 		return (((int)(237 + 18 * i / 0.2225) << 16) + ((int)(255 - 85 * i /
-			0.2225) << 8) + (255 - 255 * i / 0.2225));
+						0.2225) << 8) + (255 - 255 * i / 0.2225));
 	else if (i <= 0.8575 && (i -= 0.6425))
 		return (((int)(255 - 255 * i / 0.215) << 16) + ((int)(170 - 168 * i /
-			0.215) << 8));
+						0.215) << 8));
 	else
 		return ((int)(2 - 2 * (i -= 0.8575) / 0.1425) << 8);
 }
 
-static int		pixel(t_fract *fract, long double x, long double y)
+static int	pixel(t_fract *fract, long double x, long double y)
 {
-	long double	i;
-	long double	zoom;
+	long double		i;
+	long double		zoom;
 
 	zoom = 1 / fract->zoom;
 	x = -0.75 + 1.75 * (2 * (x - (WINX / 2)) / WINX) * zoom;
@@ -57,12 +69,12 @@ static int		pixel(t_fract *fract, long double x, long double y)
 	return (i != fract->iter) ? color(i / fract->iter) : 0;
 }
 
-void			mandelbrot(t_fract *fract)
+void		mandelbrot(t_fract *fract)
 {
-	void		*img;
-	char		*pixs;
+	void			*img;
+	char			*pixs;
 	unsigned int	color;
-	int		i;
+	int				i;
 
 	img = mlx_new_image(fract->mlx, WINX, WINY);
 	pixs = mlx_get_data_addr(img, &(fract->bpp), &(fract->ls), &(fract->end));

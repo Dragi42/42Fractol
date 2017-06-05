@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpaunovi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/05 16:16:23 by dpaunovi          #+#    #+#             */
+/*   Updated: 2017/06/05 16:19:41 by dpaunovi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "fractol.h"
 
@@ -16,9 +28,9 @@ static int	getfractal(char *str)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	t_fract		*fract;
+	t_fract	*fract;
 	int		type;
 
 	if (argc != 2 || !(type = getfractal(argv[1])))
